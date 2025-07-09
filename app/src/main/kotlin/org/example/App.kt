@@ -6,10 +6,17 @@ package org.example
 import org.example.Calculator
 import org.example.enums.Operator
 
-fun readNumber(prompt: String): Int? {
-    print(prompt)
-    val input = readLine()
-    return input?.toIntOrNull() // 입력값을 Int로 변환, 실패시 null 반환
+fun readNumber(prompt: String): Int {
+    while(true) {
+        print(prompt)
+        val input = readLine()
+        val num = input?.toIntOrNull() // 입력값을 Int로 변환, 실패시 null
+        if(num != null) {
+            return num // 변환 성공 시 숫자 반환
+        } else {
+            println("잘못된 입력입니다. 숫자를 입력해주세요.")
+        }
+    }
 }
 
 fun main() {
@@ -24,9 +31,9 @@ fun main() {
             Operator.fromSymbol(it)
         }
 
-        // 입력값이 null이거나 숫자가 아닌 경우 처리
-        if (num1 == null || num2 == null || op == null) {
-            println("잘못된 입력입니다.")
+        // 잘못된 연산자
+        if (op == null) {
+            println("없는 연산자입니다.")
             continue
         }
 
