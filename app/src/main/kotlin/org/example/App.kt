@@ -3,16 +3,7 @@
  */
 package org.example
 
-fun calculate(num1: Int, num2: Int, op: String): Int? {
-    // return - when 문법을 사용하여 연산을 수행
-    return when (op) {
-        "+" -> num1 + num2
-        "-" -> num1 - num2
-        "*" -> num1 * num2
-        "/" -> if (num2 != 0) num1 / num2 else null
-        else -> null
-    }
-}
+import org.example.Calculator
 
 fun readNumber(prompt: String): Int? {
     print(prompt)
@@ -21,6 +12,7 @@ fun readNumber(prompt: String): Int? {
 }
 
 fun main() {
+    val calculator = Calculator()
     while (true) {
         val num1 = readNumber("첫 번째 숫자를 입력하세요: ")
         val num2 = readNumber("두 번째 숫자를 입력하세요: ")
@@ -35,18 +27,18 @@ fun main() {
         }
 
         // calculate 함수를 호출하여 결과를 계산
-        val result = calculate(num1, num2, op)
+        val result = calculator.calculate(num1, num2, op)
 
-        if (result != null) {
-            println("결과: $result")
-        } else {
+        if (result == null) {
             println("잘못된 연산자입니다.")
             continue
         }
 
+        println("결과: $result")
+
         print("종료하시겠습니까?(exit): ")
         val exitInput = readLine()
-        
+
         if(exitInput == "exit") {
             println("프로그램을 종료합니다.")
             break
