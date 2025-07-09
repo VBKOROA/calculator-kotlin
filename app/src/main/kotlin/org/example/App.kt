@@ -3,22 +3,42 @@
  */
 package org.example
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
+fun calculate(num1: Int, num2: Int, op: String): Int? {
+    // return - when 문법을 사용하여 연산을 수행
+    return when (op) {
+        "+" -> num1 + num2
+        "-" -> num1 - num2
+        "*" -> num1 * num2
+        "/" -> if (num2 != 0) num1 / num2 else null
+        else -> null
+    }
 }
 
 fun main() {
-    print("숫자를 입력하세요: ")
-    val input = readLine() // 사용자 입력을 readonly 변수에 저장
+    print("첫 번째 숫자를 입력하세요: ")
+    val input1 = readLine() // 사용자 입력을 readonly 변수에 저장
     // 입력값을 Int로 변환
     // 실패시 모두 null 처리
-    val num = input?.toIntOrNull()
-    if(num != null) {
-        println("입력한 숫자: $num")
+    val num1 = input1?.toIntOrNull()
+
+    print("두 번째 숫자를 입력하세요: ")
+    val input2 = readLine()
+    val num2 = input2?.toIntOrNull()
+
+    print("연산자를 입력하세요 (+, -, *, /): ")
+    val op = readLine()
+
+    // 입력값이 null이거나 숫자가 아닌 경우 처리
+    if(num1 == null || num2 == null || op == null) {
+        println("잘못된 입력입니다.")
+        return
+    }
+
+    // calculate 함수를 호출하여 결과를 계산
+    val result = calculate(num1, num2, op)
+    if (result != null) {
+        println("결과: $result")
     } else {
-        println("숫자가 아니거나 입력이 없습니다!")
+        println("잘못된 연산자입니다.")
     }
 }
