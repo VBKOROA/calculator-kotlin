@@ -1,5 +1,7 @@
 package org.example
 
+import org.example.enums.Operator
+
 class Calculator {
     // static 선언 영역
     companion object {
@@ -23,14 +25,8 @@ class Calculator {
         }
     }
 
-    fun calculate(num1: Int, num2: Int, op: String): Int? {
-        val result = when (op) {
-            "+" -> num1 + num2
-            "-" -> num1 - num2
-            "*" -> num1 * num2
-            "/" -> if (num2 != 0) num1 / num2 else null
-            else -> null
-        }
+    fun calculate(num1: Int, num2: Int, op: Operator): Int? {
+        val result = op.apply(num1, num2) // 연산자에 따라 계산 수행
 
         // result가 null이 아닐 때만 동작
         // it - 자기 자신
