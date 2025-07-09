@@ -15,30 +15,39 @@ fun calculate(num1: Int, num2: Int, op: String): Int? {
 }
 
 fun main() {
-    print("첫 번째 숫자를 입력하세요: ")
-    val input1 = readLine() // 사용자 입력을 readonly 변수에 저장
-    // 입력값을 Int로 변환
-    // 실패시 모두 null 처리
-    val num1 = input1?.toIntOrNull()
+    while (true) {
+        print("첫 번째 숫자를 입력하세요: ")
+        val input1 = readLine() // 사용자 입력을 readonly 변수에 저장
+        // 입력값을 Int로 변환
+        // 실패시 모두 null 처리
+        val num1 = input1?.toIntOrNull()
 
-    print("두 번째 숫자를 입력하세요: ")
-    val input2 = readLine()
-    val num2 = input2?.toIntOrNull()
+        print("두 번째 숫자를 입력하세요: ")
+        val input2 = readLine()
+        val num2 = input2?.toIntOrNull()
 
-    print("연산자를 입력하세요 (+, -, *, /): ")
-    val op = readLine()
+        print("연산자를 입력하세요 (+, -, *, /): ")
+        val op = readLine()
 
-    // 입력값이 null이거나 숫자가 아닌 경우 처리
-    if(num1 == null || num2 == null || op == null) {
-        println("잘못된 입력입니다.")
-        return
-    }
+        // 입력값이 null이거나 숫자가 아닌 경우 처리
+        if (num1 == null || num2 == null || op == null) {
+            println("잘못된 입력입니다.")
+            continue
+        }
 
-    // calculate 함수를 호출하여 결과를 계산
-    val result = calculate(num1, num2, op)
-    if (result != null) {
-        println("결과: $result")
-    } else {
-        println("잘못된 연산자입니다.")
+        // calculate 함수를 호출하여 결과를 계산
+        val result = calculate(num1, num2, op)
+        if (result != null) {
+            println("결과: $result")
+        } else {
+            println("잘못된 연산자입니다.")
+            continue
+        }
+        print("종료하시겠습니까?(exit): ")
+        val exitInput = readLine()
+        if(exitInput == "exit") {
+            println("프로그램을 종료합니다.")
+            break
+        }
     }
 }
