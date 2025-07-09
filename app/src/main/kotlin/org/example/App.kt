@@ -13,5 +13,12 @@ class App {
 fun main() {
     print("숫자를 입력하세요: ")
     val input = readLine() // 사용자 입력을 readonly 변수에 저장
-    println("입력한 값: $input") // `$변수명` 형식으로 변수 출력
+    // 입력값을 Int로 변환
+    // 실패시 모두 null 처리
+    val num = input?.toIntOrNull()
+    if(num != null) {
+        println("입력한 숫자: $num")
+    } else {
+        println("숫자가 아니거나 입력이 없습니다!")
+    }
 }
