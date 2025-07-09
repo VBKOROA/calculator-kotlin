@@ -14,17 +14,16 @@ fun calculate(num1: Int, num2: Int, op: String): Int? {
     }
 }
 
+fun readNumber(prompt: String): Int? {
+    print(prompt)
+    val input = readLine()
+    return input?.toIntOrNull() // 입력값을 Int로 변환, 실패시 null 반환
+}
+
 fun main() {
     while (true) {
-        print("첫 번째 숫자를 입력하세요: ")
-        val input1 = readLine() // 사용자 입력을 readonly 변수에 저장
-        // 입력값을 Int로 변환
-        // 실패시 모두 null 처리
-        val num1 = input1?.toIntOrNull()
-
-        print("두 번째 숫자를 입력하세요: ")
-        val input2 = readLine()
-        val num2 = input2?.toIntOrNull()
+        val num1 = readNumber("첫 번째 숫자를 입력하세요: ")
+        val num2 = readNumber("두 번째 숫자를 입력하세요: ")
 
         print("연산자를 입력하세요 (+, -, *, /): ")
         val op = readLine()
