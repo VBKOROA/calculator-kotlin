@@ -4,6 +4,7 @@
 package org.example
 
 import org.example.Calculator
+import org.example.enums.Operator
 
 fun readNumber(prompt: String): Int? {
     print(prompt)
@@ -18,7 +19,10 @@ fun main() {
         val num2 = readNumber("두 번째 숫자를 입력하세요: ")
 
         print("연산자를 입력하세요 (+, -, *, /): ")
-        val op = readLine()
+        val opStr = readLine()
+        val op = opStr?.let {
+            Operator.fromSymbol(it)
+        }
 
         // 입력값이 null이거나 숫자가 아닌 경우 처리
         if (num1 == null || num2 == null || op == null) {

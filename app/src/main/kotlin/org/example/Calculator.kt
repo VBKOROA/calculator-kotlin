@@ -8,13 +8,13 @@ class Calculator {
         const val MAX_RESULTS = 5 // static final int MAX_RESULTS와 유사
     }
 
-    private val results = mutableListOf<Int>()
+    private val results = mutableListOf<Double>()
 
-    fun getResults(): List<Int> {
+    fun getResults(): List<Double> {
         return results
     }
 
-    fun setResults(newResults: List<Int>) {
+    fun setResults(newResults: List<Double>) {
         results.clear() // 먼저 기존 결과를 지우고
         results.addAll(newResults) // 새로운 결과를 추가
     }
@@ -25,8 +25,8 @@ class Calculator {
         }
     }
 
-    fun calculate(num1: Int, num2: Int, op: Operator): Int? {
-        val result = op.apply(num1, num2) // 연산자에 따라 계산 수행
+    fun <T: Number> calculate(num1: T, num2: T, op: Operator): Double? {
+        val result = op.apply(num1.toDouble(), num2.toDouble()) // 연산자에 따라 계산 수행
 
         // result가 null이 아닐 때만 동작
         // it - 자기 자신
