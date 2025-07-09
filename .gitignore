@@ -5,4 +5,8 @@
 build
 /app/bin/
 
+.kotlin/
+
+.vscode/
+
 /docs

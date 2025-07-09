@@ -11,5 +11,7 @@ class App {
 }
 
 fun main() {
-    println(App().greeting)
+    print("숫자를 입력하세요: ")
+    val input = readLine() // 사용자 입력을 readonly 변수에 저장
+    println("입력한 값: $input") // `$변수명` 형식으로 변수 출력
 }
