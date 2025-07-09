@@ -19,23 +19,25 @@ fun readNumber(prompt: String): Int {
     }
 }
 
+fun readOperator(prompt: String): Operator {
+    while (true) {
+        print(prompt)
+        val input = readLine()
+        val op = input?.let { Operator.fromSymbol(it) } // 입력값을 연산자로 변환, 실패시 null
+        if (op != null) {
+            return op // 변환 성공 시 연산자 반환
+        } else {
+            println("잘못된 연산자입니다.")
+        }
+    }
+}
+
 fun main() {
     val calculator = Calculator()
     while (true) {
         val num1 = readNumber("첫 번째 숫자를 입력하세요: ")
         val num2 = readNumber("두 번째 숫자를 입력하세요: ")
-
-        print("연산자를 입력하세요 (+, -, *, /): ")
-        val opStr = readLine()
-        val op = opStr?.let {
-            Operator.fromSymbol(it)
-        }
-
-        // 잘못된 연산자
-        if (op == null) {
-            println("없는 연산자입니다.")
-            continue
-        }
+        val op = readOperator("연산자를 입력하세요 (+, -, *, /): ")
 
         // calculate 함수를 호출하여 결과를 계산
         val result = calculator.calculate(num1, num2, op)
