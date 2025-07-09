@@ -3,13 +3,58 @@
  */
 package org.example
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
+import org.example.Calculator
+import org.example.enums.Operator
+
+fun readNumber(prompt: String): Int {
+    while(true) {
+        print(prompt)
+        val input = readLine()
+        val num = input?.toIntOrNull() // 입력값을 Int로 변환, 실패시 null
+        if(num != null) {
+            return num // 변환 성공 시 숫자 반환
+        } else {
+            println("잘못된 입력입니다. 숫자를 입력해주세요.")
         }
+    }
+}
+
+fun readOperator(prompt: String): Operator {
+    while (true) {
+        print(prompt)
+        val input = readLine()
+        val op = input?.let { Operator.fromSymbol(it) } // 입력값을 연산자로 변환, 실패시 null
+        if (op != null) {
+            return op // 변환 성공 시 연산자 반환
+        } else {
+            println("잘못된 연산자입니다.")
+        }
+    }
 }
 
 fun main() {
-    println(App().greeting)
+    val calculator = Calculator()
+    while (true) {
+        val num1 = readNumber("첫 번째 숫자를 입력하세요: ")
+        val num2 = readNumber("두 번째 숫자를 입력하세요: ")
+        val op = readOperator("연산자를 입력하세요 (+, -, *, /): ")
+
+        // calculate 함수를 호출하여 결과를 계산
+        val result = calculator.calculate(num1, num2, op)
+
+        if (result == null) {
+            println("잘못된 연산자입니다.")
+            continue
+        }
+
+        println("결과: $result")
+
+        print("종료하시겠습니까?(exit): ")
+        val exitInput = readLine()
+
+        if(exitInput == "exit") {
+            println("프로그램을 종료합니다.")
+            break
+        }
+    }
 }
