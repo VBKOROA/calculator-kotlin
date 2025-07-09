@@ -36,14 +36,17 @@ fun main() {
 
         // calculate 함수를 호출하여 결과를 계산
         val result = calculate(num1, num2, op)
+
         if (result != null) {
             println("결과: $result")
         } else {
             println("잘못된 연산자입니다.")
             continue
         }
+
         print("종료하시겠습니까?(exit): ")
         val exitInput = readLine()
+        
         if(exitInput == "exit") {
             println("프로그램을 종료합니다.")
             break
