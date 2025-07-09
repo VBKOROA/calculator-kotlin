@@ -38,4 +38,9 @@ class Calculator {
         }
         return result
     }
+
+    fun searchBiggerThan(value: Double): List<Double> {
+        // results에서 value보다 큰 값들만 필터링하여 반환
+        return results.filter { it > value }
+    }
 }
